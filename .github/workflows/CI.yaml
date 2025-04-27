@@ -64,4 +64,4 @@ jobs:
           uses: sigstore/cosign-installer@v3.8.1
         - name: Sign the docker images
           run: |
-            cosign sign --recursive --yes "${{ env.registry_path }}-${{ matrix.dockerfile_context }}@${{ steps.build.outputs.digest }}"
+            cosign sign --recursive --yes "${{ env.registry_path }}@${{ steps.build.outputs.digest }}"
