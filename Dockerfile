@@ -1,13 +1,28 @@
-# Inspired by https://stephenhaney.com/2024/playwright-on-fly-io-with-bun/ even thogh its basically only adding the installation of bun
-# Use the official playwright docker image
-FROM mcr.microsoft.com/playwright:v1.52.0
+# Adapted based on https://github.com/microsoft/playwright/blob/main/utils/docker/Dockerfile.noble
+FROM ubuntu:noble
 
-# Install unzip and curl (required by bun)
-RUN apt-get update && apt-get install -y \
-    unzip \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+ARG DEBIAN_FRONTEND=noninteractive
+ARG TZ=Europe/Berlin
 
-# Install bun
-RUN curl -fsSL https://bun.sh/install | bash
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+# Install bun with its dependencies
+RUN apt-get update && \
+    # Install Node.js
+    apt-get install -y curl unzip && \
+    curl -fsSL https://bun.sh/install | bash && \
+    # Feature-parity with node.js base images.
+    apt-get install -y --no-install-recommends git openssh-client && \
+    # clean apt cache
+    rm -rf /var/lib/apt/lists/* && \
+    # Create the pwuser
+    adduser pwuser
+
 ENV PATH=$PATH:/root/.bun/bin
+
+# Install playwright and its dependencies
+
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+RUN bunx playwright install --with-deps
