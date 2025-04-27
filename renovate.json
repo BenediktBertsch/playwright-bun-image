@@ -3,5 +3,6 @@
   "extends": [
     "config:recommended"
   ],
-  "autoApprove": true
+  "autoApprove": true,
+  "automerge": true
 }
