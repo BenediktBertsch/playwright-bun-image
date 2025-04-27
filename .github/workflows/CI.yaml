@@ -38,7 +38,7 @@ jobs:
           uses: docker/metadata-action@v5.7.0
           id: meta
           with:
-            images: ${{ env.registry_path }}-${{ matrix.dockerfile_context }}
+            images: ${{ env.registry_path }}
             tags: |
                 type=schedule
                 type=ref,event=branch
@@ -54,7 +54,7 @@ jobs:
           id: build
           with:
               push: true
-              file: ${{ matrix.dockerfile_context }}/Dockerfile
+              file: Dockerfile
               build-args: |
               platforms: ${{ env.platforms }}
               tags: ${{ steps.meta.outputs.tags }}
