@@ -50,7 +50,7 @@ jobs:
           env:
             DOCKER_METADATA_ANNOTATIONS_LEVELS: index
         - name: Build and deploy docker images
-          uses: docker/build-push-action@v6.15.0
+          uses: docker/build-push-action@v6.16.0
           id: build
           with:
               push: true
@@ -61,7 +61,7 @@ jobs:
               labels: ${{ steps.meta.outputs.labels }}
               provenance: "mode=max"
         - name: Install Cosign
-          uses: sigstore/cosign-installer@v3.8.1
+          uses: sigstore/cosign-installer@v3.8.2
         - name: Sign the docker images
           run: |
             cosign sign --recursive --yes "${{ env.registry_path }}@${{ steps.build.outputs.digest }}"
