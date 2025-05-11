@@ -1,5 +1,5 @@
 # Adapted based on https://github.com/microsoft/playwright/blob/main/utils/docker/Dockerfile.noble
-FROM oven/bun:1.2.12
+FROM oven/bun:1.2.13
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=Europe/Berlin
