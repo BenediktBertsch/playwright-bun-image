@@ -14,7 +14,6 @@ RUN apt-get update -y && \
     apt-get install -y curl && \
     mkdir -p ${NVM_DIR} && \
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \
-    apt-get remove -y curl && \
     apt-get -y autoclean
 
 RUN . $NVM_DIR/nvm.sh && \
