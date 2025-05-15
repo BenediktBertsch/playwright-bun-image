@@ -1,0 +1,24 @@
+name: Build and publish Docker images
+
+on:
+    push:
+        branches:
+            - main
+
+env:
+    platforms: "linux/amd64,linux/arm64"
+    registry_path: "ghcr.io/benediktbertsch/playwright-bun-image"
+
+jobs:
+    dependabot:
+        runs-on: ubuntu-latest
+        if: ${{ github.actor == 'dependabot[bot]' }}
+        steps:
+
+        - run: |
+            gh pr review --approve "$PR_URL"
+            gh pr edit --add-label "automerge" "$PR_URL"
+            gh pr merge --auto --squash "$PR_URL"
+        env:
+            PR_URL: ${{ github.event.pull_request.html_url }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
