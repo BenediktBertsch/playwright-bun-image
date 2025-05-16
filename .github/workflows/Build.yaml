@@ -50,7 +50,7 @@ jobs:
           env:
             DOCKER_METADATA_ANNOTATIONS_LEVELS: index
         - name: Build and deploy docker images
-          uses: docker/build-push-action@v6.15.0
+          uses: docker/build-push-action@v6.17.0
           id: build
           with:
               push: true
