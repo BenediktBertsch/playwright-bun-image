@@ -1,4 +1,4 @@
-FROM oven/bun:1.2.13
+FROM oven/bun:1.2.15
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=Europe/Berlin
