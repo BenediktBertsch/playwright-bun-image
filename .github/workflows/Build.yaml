@@ -35,7 +35,7 @@ jobs:
               username: ${{github.actor}}
               password: ${{secrets.GITHUB_TOKEN}}
         - name: Calculate metadata
-          uses: docker/metadata-action@v5.7.0
+          uses: docker/metadata-action@v5.10.0
           id: meta
           with:
             images: ${{ env.registry_path }}
